@@ -58,3 +58,10 @@ ingresando al enlace
 
  - [Docs](http://localhost:3000/docs)
 
+## Recursos
+
+![image](https://github.com/user-attachments/assets/8f011651-f79d-4b07-bc74-e12803047bf1)
+
+![image](https://github.com/user-attachments/assets/f3923a43-a1d7-44aa-a4a9-5d0d8efad3db)
+
+
