@@ -3,8 +3,9 @@ import { CreateCursoDto } from './dto/create-curso.dto';
 import { UpdateCursoDto } from './dto/update-curso.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Curso } from './entities/curso.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { DocenteService } from 'src/docente/docente.service';
+import { FiltrosDto } from './dto/filtros.dto';
 
 @Injectable()
 export class CursosService {
@@ -32,8 +33,25 @@ export class CursosService {
     return cursos
   }
 
+  async findAllByDocente(filtros: FiltrosDto) {
+    const cursos = await this.cursoRepository.find({
+      where:{
+        docente:{
+          nombre: Like(filtros.nombreDocente)
+        }
+      }
+    })
+    return cursos
+  }
+
   async findOne(id: string) {
     const curso = await this.cursoRepository.findOneBy({ id })
+    if (!curso) throw new NotFoundException()
+    return curso
+  }
+
+  async findOneByName(nombre: string) {
+    const curso = await this.cursoRepository.findOneBy({ nombre })
     if (!curso) throw new NotFoundException()
     return curso
   }
